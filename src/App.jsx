@@ -31,6 +31,14 @@ function App() {
 
     setContactList(clone)
   }
+  const handleSortContactsByPopularity = () => {
+    let clone = JSON.parse(JSON.stringify(contactList))
+    clone.sort((contact1, contact2) => {
+      return contact1.popularity > contact2.popularity ? 1 : -1
+    })
+
+    setContactList(clone)
+  }
 
   const handleRemoveContact = (id) => {
     let filteredArr = contactList.filter((eachContact) => {
@@ -49,7 +57,8 @@ function App() {
     <div className="App">
       <h1>Contacts</h1>
       <button onClick={handleAddContact}>Add Random Contact</button>
-      <button onClick={handleSortContacts}>Sort Contacts</button>
+      <button onClick={handleSortContacts}>Sort by Name</button>
+      <button onClick={handleSortContactsByPopularity}>Sort by Popularity</button>
       <div className="contact-list">
         <table>
           <thead>
